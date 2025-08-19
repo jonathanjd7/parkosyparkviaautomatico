@@ -5,7 +5,7 @@ Automatizador para importar reservas de Parkos y Parkvia en GoBarajas.
 ## 📁 Estructura del Proyecto
 
 ```
-automatico/
+parkosyparkvia/
 ├── gobarajas_final_clean.py      # Automatizador principal
 ├── gobarajas_config.py           # Configuración del sistema
 ├── gobarajas_config.env          # Contraseña y configuración
@@ -130,4 +130,4 @@ ENABLE_NOTIFICATIONS=True
 
 ---
 
-**Desarrollado para GoBarajas - Aeropuerto de Barajas, Madrid**
+**Desarrollado para GoBarajas - AUTOR: Jonathan Doicela**
