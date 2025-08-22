@@ -47,14 +47,22 @@ class GoBarajasFinalClean:
         try:
             options = Options()
             if config.HEADLESS_MODE:
-                options.add_argument('--headless')
+                options.add_argument('--headless=new')
             options.add_argument('--no-sandbox')
             options.add_argument('--disable-dev-shm-usage')
             options.add_argument('--disable-gpu')
+            options.add_argument('--disable-extensions')
+            options.add_argument('--disable-plugins')
+            options.add_argument('--disable-images')
             options.add_argument('--window-size=1920,1080')
-            options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+            options.add_argument('--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.7204.184 Safari/537.36')
             
-            service = Service(ChromeDriverManager().install())
+            # Configurar ChromeDriver con opciones específicas
+            driver_path = ChromeDriverManager().install()
+            # Asegurar que usamos el archivo .exe correcto
+            if driver_path.endswith('THIRD_PARTY_NOTICES.chromedriver'):
+                driver_path = driver_path.replace('THIRD_PARTY_NOTICES.chromedriver', 'chromedriver.exe')
+            service = Service(driver_path)
             self.driver = webdriver.Chrome(service=service, options=options)
             
             logger.info("Driver configurado correctamente")

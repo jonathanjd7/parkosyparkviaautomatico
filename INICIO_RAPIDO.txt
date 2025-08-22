@@ -7,50 +7,62 @@
 - Google Chrome instalado
 
 🔧 INSTALACIÓN AUTOMÁTICA (RECOMENDADA):
-1. Copiar toda la carpeta "automatico" al nuevo ordenador
+1. Copiar toda la carpeta "parkosyparkviaautomatico" al nuevo ordenador
 2. Abrir carpeta y ejecutar: configurar_nuevo_ordenador.bat
 3. Seguir las instrucciones en pantalla
 4. ¡Listo para usar!
 
 ⚡ INSTALACIÓN MANUAL (ALTERNATIVA):
 1. Abrir terminal/cmd en la carpeta
-2. pip install -r requirements.txt
-3. Editar gobarajas_config.env (establecer contraseña)
-4. Probar: python monitor_gobarajas.py
+2. py -m pip install -r requirements.txt
+3. py -m pip install psutil pywin32
+4. Editar gobarajas_config.env (establecer contraseña)
+5. Probar: py monitor_gobarajas.py
 
 🎯 USO DIARIO:
-- INICIAR: Doble clic en "GoBarajas Automatizador" (escritorio)
-- VERIFICAR: Doble clic en "Verificar GoBarajas" (escritorio)  
-- DETENER: taskkill /f /im pythonw.exe
+- INICIAR: Start-Process -FilePath "py" -ArgumentList "gobarajas_final_clean.py" -WindowStyle Hidden
+- VERIFICAR: py monitor_gobarajas.py
+- DETENER: taskkill /f /im python.exe
 
 📊 FUNCIONAMIENTO:
 - Se ejecuta automáticamente cada 30 minutos
 - Importa reservas de Parkos y Parkvia
-- Funciona en segundo plano
+- Funciona en segundo plano (modo headless)
 - Genera logs detallados
 
 🆘 PROBLEMAS COMUNES:
-- "python no reconocido" → Reinstalar Python con PATH
-- "No module named selenium" → pip install -r requirements.txt
+- "py no reconocido" → Reinstalar Python con PATH
+- "No module named selenium" → py -m pip install -r requirements.txt
 - "Contraseña incorrecta" → Verificar gobarajas_config.env
-- "Múltiples procesos" → taskkill /f /im pythonw.exe
+- "Múltiples procesos" → taskkill /f /im python.exe
+- "ChromeDriver error" → Remove-Item -Recurse -Force "C:\Users\%USERNAME%\.wdm"
 
 📁 ARCHIVOS IMPORTANTES:
-- gobarajas_final_clean.py (automatizador principal)
+- gobarajas_final_clean.py (automatizador principal - VERSIÓN MEJORADA)
 - gobarajas_config.env (contraseña y configuración)
 - iniciar_automatico.bat (script de inicio)
 - verificar_estado.bat (verificar estado)
 - monitor_gobarajas.py (monitor detallado)
+- configurar_nuevo_ordenador.bat (instalación automática)
 
 ✅ VERIFICACIÓN DE FUNCIONAMIENTO:
-1. Ejecutar: verificar_estado.bat
-2. Debe mostrar proceso pythonw.exe ejecutándose
+1. Ejecutar: py monitor_gobarajas.py
+2. Debe mostrar proceso python.exe ejecutándose
 3. Logs deben actualizarse cada 30 minutos
 4. Archivo gobarajas_final_clean.log debe crecer
+5. Mensaje: "2/2 actualizadores completados"
 
 🌐 URLs QUE AUTOMATIZA:
 - Parkos: https://gobarajas.com/app/actualizadorParkos.php
 - Parkvia: https://gobarajas.com/app/actualizadorParkvia.php
+
+🔧 MEJORAS VERSIÓN 2.0:
+- ChromeDriver mejorado (solución Win32/Win64)
+- Modo headless por defecto
+- Dependencias actualizadas (psutil, pywin32)
+- Instalación automática en nuevo ordenador
+- Monitor mejorado con detección precisa
+- Configuración robusta con manejo de errores
 
 =====================================================
 ¡GOBARAJAS LISTO PARA FUNCIONAR EN CUALQUIER PC! 🎉
