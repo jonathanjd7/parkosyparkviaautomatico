@@ -224,20 +224,18 @@ class GoBarajasFinalClean:
     
     def start_scheduler(self):
         """Iniciar el programador de tareas"""
-        logger.info(f"Iniciando programador GoBarajas - verificando cada {config.CHECK_INTERVAL_MINUTES} minutos")
+        logger.info("Iniciando programador GoBarajas - ejecución diaria a las 23:50")
         
         # Mostrar información de los actualizadores
         logger.info("Actualizadores configurados:")
         for actualizador in self.actualizadores:
             logger.info(f"  * {actualizador['nombre']}: {actualizador['url']}")
         
-        # Ejecutar inmediatamente al inicio
-        self.run_automation_cycle()
+        # Programar ejecución diaria a las 23:50
+        schedule.every().day.at("23:50").do(self.run_automation_cycle)
         
-        # Programar ejecuciones periódicas
-        schedule.every(config.CHECK_INTERVAL_MINUTES).minutes.do(self.run_automation_cycle)
-        
-        logger.info("Programador iniciado - ejecutando en segundo plano...")
+        logger.info("Programador iniciado - próxima ejecución: hoy a las 23:50")
+        logger.info("El script permanecerá en ejecución esperando la hora programada...")
         
         while True:
             schedule.run_pending()
